@@ -7,14 +7,25 @@ const adminAuthRouter = Router();
 
 // admin register function
 adminAuthRouter.post("/register", async (req, res) => {
+  console.log("Request body:", req.body);
+  console.log("Username:", req.body.username);
+  console.log("Password:", req.body.password);
+  console.log("Email:", req.body.email);
+  
+  const { username, password, email, firstName, lastName, dateOfBirth, phoneNumber } = req.body;
+
+  if (!username || !password || !email) {
+    return res.status(400).json({ message: "Username, password, and email are required" });
+  }
+
   const admin = {
-    username: req.body.username,
-    password: req.body.password,
-    email: req.body.email,
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    dateOfBirth: req.body.dateOfBirth,
-    phoneNumber: Number(req.body.phoneNumber),
+    username,
+    password,
+    email,
+    firstName,
+    lastName,
+    dateOfBirth,
+    phoneNumber: Number(phoneNumber),
   };
 
   const salt = await bcrypt.genSalt(10);
@@ -35,10 +46,19 @@ adminAuthRouter.post("/register", async (req, res) => {
         },
       },
     },
-  });
-
-  return res.json({
-    message: "admin has been created successfully",
+  })
+  .then(() => {
+    return res.json({
+      message: "admin has been created successfully",
+    });
+  })
+  .catch((error) => {
+    console.error("Prisma Error:", error);
+    return res.status(500).json({ 
+      message: "Error creating admin",
+      error: error.message,
+      code: error.code 
+    });
   });
 });
 

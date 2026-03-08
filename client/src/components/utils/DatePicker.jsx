@@ -24,13 +24,13 @@ export default function DatePickerComponent({
           minDate={minDate ? dayjs(minDate) : null}
           maxDate={maxDate ? dayjs(maxDate) : null}
           onChange={(newValue) => {
-            if (name === "checkInEdit") {
-              func(newValue ? newValue.format("YYYY-MM-DD") : "");
-            } else {
+            if (name === "checkIn" || name === "checkOut") {
               handleInputDateChange(
                 newValue ? newValue.format("YYYY-MM-DD") : "",
                 name
               );
+            } else {
+              func(newValue ? newValue.format("YYYY-MM-DD") : "");
             }
           }}
           InputLabelProps={{
