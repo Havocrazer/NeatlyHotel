@@ -20,8 +20,8 @@ const port = 4000;
 dotenv.config();
 
 app.use(cors());
-app.use(express.json());
-app.use(bodyParser.json());
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(morgan("tiny"));
 
 app.use("/auth/admin", adminAuthRouter);
@@ -33,14 +33,8 @@ app.use("/booking", bookingRouter);
 app.use("/bookinghistory", bookingHistory);
 app.use("/status", statusRouter);
 
-app.post("/test", async (req, res) => {
-  const bedTypes = await prisma.bedTypes.create({
-    data: {
-      bedTypeName: "Single",
-    },
-  });
-  res.json(bedTypes);
-  console.log("bedTypes", bedTypes);
+app.post("/test-body", (req, res) => {
+  res.json({ body: req.body });
 });
 
 app.listen(port, () => {

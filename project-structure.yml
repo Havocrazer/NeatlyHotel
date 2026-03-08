@@ -1,0 +1,236 @@
+name: NeatlyHotel
+description: A hotel booking management system with user authentication, room booking, and admin features.
+
+project_type: Full-stack Web Application
+
+tech_stack:
+  frontend:
+    - React 18
+    - Vite (build tool)
+    - React Router DOM
+    - Tailwind CSS
+    - Material UI (MUI)
+    - Swiper (carousel)
+    - Firebase (authentication)
+    - Supabase (storage/database)
+    - Axios (HTTP client)
+    - React Hook Form
+
+  backend:
+    - Node.js
+    - Express.js
+    - Prisma (ORM)
+    - PostgreSQL (database)
+    - JWT (authentication)
+    - Cloudinary (image storage)
+    - Multer (file upload)
+    - bcrypt (password hashing)
+
+  dev_tools:
+    - Docker & Docker Compose
+    - Nodemon (server auto-reload)
+
+directory_structure:
+  root:
+    - docker-compose.yml
+    - README.md
+    - .gitignore
+
+  client/:
+    - package.json
+    - vite.config.js
+    - tailwind.config.js
+    - postcss.config.js
+    - index.html
+    - public/:
+        - logo.svg
+        - search.svg
+        - vite.svg
+        - iconroom.svg
+        - iconmanage.svg
+        - iconlogout.svg
+        - iconhotel.svg
+        - iconbooking.svg
+    - src/:
+        - main.jsx
+        - App.css
+        - index.css
+        - config/:
+            - firebase-config.js
+        - utils/:
+            - userValidate.js
+            - jwtInterceptor.js
+            - getInputDate.js
+            - dateFormat.js
+            - getUserDataFromLocalStorage.js
+        - pages/:
+            - LandingPage.jsx
+            - RegisterPage.jsx
+            - UserLoginPage.jsx
+            - AdminLoginPage.jsx
+            - SearchResultPage.jsx
+            - RoomDetailPage.jsx
+            - RoomBooking.jsx
+            - PaymentPage.jsx
+            - PaymentResultPage.jsx
+            - BookingHistoryPage.jsx
+            - BookingCancelPage.jsx
+            - BookingCancelSuccessPage.jsx
+            - BookingChangeDatePage.jsx
+            - BookingRefundPage.jsx
+            - BookingRefundSuccessPage.jsx
+            - UserUpdateProfilePage.jsx
+            - RoomManagementPage.jsx
+            - RoomAndPropertyPage.jsx
+            - AdminCustumerBookingPage.jsx
+            - AdminBookingDetailPage.jsx
+            - AdminEditRoomPage.jsx
+            - AdminCreateRoomTypePage.jsx
+            - AdminUpdateRoomTypePage.jsx
+        - components/:
+            - Footer.jsx
+            - SearchResult.jsx
+            - RegistrationForm.jsx
+            - LogInForm.jsx
+            - PaymentResult.jsx
+            - navigation-bar/:
+                - NavigationBar.jsx
+                - NavigationBarAuth.jsx
+            - landing-page/:
+                - LandingBooking.jsx
+                - Rooms.jsx
+                - RoomsAndSuits.jsx
+                - AboutHotel.jsx
+                - AboutHotelCarousel.jsx
+                - ServiceAndFacilities.jsx
+                - Review.jsx
+            - room-detail/:
+                - ImageSlideRoom.jsx
+                - RoomCategories.jsx
+                - OtherRoom.jsx
+            - booking-payment/:
+                - BookingPaymentHeader.jsx
+                - PaymentBasicInfo.jsx
+                - PaymentSection.jsx
+                - PaymentSpecialReq.jsx
+                - PaymentMethod.jsx
+                - BookingDetail.jsx
+            - booking-history-page/:
+                - BookingHistory.jsx
+                - CardBooking.jsx
+                - BookingCancel.jsx
+                - BookingCancelSuccess.jsx
+                - BookingChangeDate.jsx
+                - BookingRefund.jsx
+                - BookingRefundSuccess.jsx
+                - ModelPopUp.jsx
+            - user-update-profile/:
+                - UserUpdateProfile.jsx
+            - user-edit-profile/:
+                - EditUserProfile.jsx
+                - EditUserPayment.jsx
+            - admin-room/:
+                - RoomManagement.jsx
+                - RoomAndProperty.jsx
+                - CreateRoomType.jsx
+                - EditRoom.jsx
+                - UpdateRoomType.jsx
+            - utils/:
+                - DatePicker.jsx
+                - SearchBar.jsx
+                - InputErrorStyles.jsx
+                - CountrySelectOption.jsx
+                - ScrollToTop.jsx
+                - FormatDate.jsx
+            - context/:
+                - searchInputContext.jsx
+
+  server/:
+    - package.json
+    - app.js
+    - .env
+    - utils/:
+        - db.js
+        - cloudinary.js
+    - middlewares/:
+        - protect.js
+    - app/:
+        - adminRouter.js
+        - adminAuthRouter.js
+        - usersRouter.js
+        - hotelRouter.js
+        - bookingRouter.js
+        - bookingHistoryRouter.js
+        - statusRouter.js
+        - roomDetailRouter.js
+    - prisma/:
+        - schema.prisma
+        - migrations/
+    - seed/:
+        - seed.js
+        - roomSeed.js
+        - roomTypeSeed.js
+        - roomImageSeed.js
+        - roomStatusSeed.js
+        - bedTypeSeed.js
+        - requestSeed.js
+        - test.js
+    - test/:
+        - test.js
+        - textd.js
+
+api_endpoints:
+  admin:
+    - POST /api/admin/auth/login
+    - GET /api/admin
+    - PUT /api/admin/rooms/:id
+    - DELETE /api/admin/rooms/:id
+
+  users:
+    - POST /api/users/register
+    - POST /api/users/login
+    - GET /api/users/profile
+    - PUT /api/users/profile
+
+  hotel:
+    - GET /api/hotel/rooms
+    - GET /api/hotel/room-detail/:id
+
+  booking:
+    - POST /api/booking
+    - GET /api/booking/history
+    - PUT /api/booking/cancel/:id
+    - PUT /api/booking/change-date/:id
+    - PUT /api/booking/refund/:id
+
+  status:
+    - GET /api/status
+
+database_models:
+  - User
+  - Booking
+  - Room
+  - RoomType
+  - RoomImage
+  - RoomStatus
+  - BedType
+  - BookingRequest
+  - Hotel
+
+features:
+  user_side:
+    - User registration and login
+    - Room search and filtering
+    - Room detail view with image gallery
+    - Room booking and payment
+    - Booking history management
+    - Booking cancellation
+    - Booking date change
+    - Profile management
+
+  admin_side:
+    - Admin login
+    - Room management (CRUD)
+    - Room type management
+    - Customer booking management
+    - Booking detail view
